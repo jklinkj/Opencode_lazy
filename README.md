@@ -2,6 +2,8 @@
 
 English | [中文说明](#中文说明)
 
+- Quick start: [Chinese operation guide](docs/user-manual-zh-cn.md)
+
 This repository contains the online download and installation scripts for the OpenCode deployment package.
 It stores scripts, manifests, launchers, and configuration templates only. Third-party installers and binary payloads are downloaded at install time and are not redistributed in this repository.
 
@@ -35,15 +37,17 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-package.ps1 
 
 ## 中文说明
 
+- 中文操作指南：[docs/user-manual-zh-cn.md](docs/user-manual-zh-cn.md)
+
 这个仓库用于分发 OpenCode 的在线下载安装脚本。
 仓库只包含脚本、清单、启动器和配置模板，不直接分发第三方安装包或二进制文件，以避免开源仓库中的再分发合规问题。
 
 ## 仓库内容
 
-- Windows PowerShell 安装、检测与修复脚本
+- Windows PowerShell 安装、检查与修复脚本
 - 在线下载清单与校验规则
-- 一键启动入口 `launcher/*.cmd`
-- OpenCode 学院侧配置模板
+- 启动入口 `launcher/*.cmd`
+- OpenCode 配置模板
 
 ## 下载策略
 
@@ -54,11 +58,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-package.ps1 
 
 ## 常用入口
 
-- `launcher/start.cmd`：执行完整安装流程
-- `launcher/scan-only.cmd`：只做环境扫描，不安装
-- `launcher/configure-opencode.cmd`：写入配置模板
+- `launcher/start.cmd`：执行自动安装
+- `launcher/scan-only.cmd`：只做环境检查，不安装
+- `launcher/configure-opencode.cmd`：写入共享配置，通常由维护人员使用
 - `launcher/open-opencode-web.cmd`：打开 OpenCode Web
-- `launcher/install-desktop.cmd`：安装 Desktop 客户端
+- `launcher/install-desktop.cmd`：可选安装 Desktop 客户端
 
 ## 打包命令
 
