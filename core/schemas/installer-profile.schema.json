@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/opencode-installer/installer-profile.schema.json",
+  "title": "Installer Profile",
+  "type": "object",
+  "required": ["policyVersion", "runtime", "deployment", "dependencies"],
+  "properties": {
+    "policyVersion": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "object"
+    },
+    "downloads": {
+      "type": "object",
+      "properties": {
+        "cacheRoot": {
+          "type": "string"
+        },
+        "manifestFile": {
+          "type": "string"
+        },
+        "strategy": {
+          "type": "string"
+        }
+      }
+    },
+    "desktop": {
+      "type": "object",
+      "properties": {
+        "offlineInstaller": {
+          "type": "string"
+        },
+        "artifactId": {
+          "type": "string"
+        },
+        "downloadPage": {
+          "type": "string"
+        }
+      }
+    },
+    "deployment": {
+      "type": "object"
+    },
+    "dependencies": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

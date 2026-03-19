@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // V1 默认仅给出学院安全边界与占位模型。
+  // 请在试点前用学院实际 provider / model 替换下列内容。
+  "autoupdate": false,
+  "share": "manual",
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  },
+  "enabled_providers": [
+    "lingnan-gateway"
+  ],
+  "provider": {
+    "lingnan-gateway": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Lingnan AI Gateway",
+      "options": {
+        "baseURL": "https://example.invalid/v1"
+      },
+      "models": {
+        "lingnan-default": {
+          "name": "Lingnan Default Model"
+        }
+      }
+    }
+  },
+  "model": "lingnan-gateway/lingnan-default",
+  "small_model": "lingnan-gateway/lingnan-default",
+  "server": {
+    "hostname": "127.0.0.1"
+  }
+}

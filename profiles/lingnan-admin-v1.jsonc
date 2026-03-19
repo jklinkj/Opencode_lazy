@@ -1,0 +1,190 @@
+{
+  "$schema": "../../core/schemas/installer-profile.schema.json",
+  "policyVersion": "lingnan-admin-v1",
+  "supportedOs": {
+    "minBuild": 19045,
+    "architectures": [
+      "64-bit",
+      "AMD64"
+    ]
+  },
+  "thresholds": {
+    "minDiskGB": 5,
+    "minMemoryGB": 8
+  },
+  "policy": {
+    "blockingExecutionPolicies": [
+      "AllSigned",
+      "Restricted"
+    ]
+  },
+  "runtime": {
+    "reportRoot": "reports",
+    "runtimeRoot": "runtime",
+    "nodeRoot": "runtime/node",
+    "npmGlobalRoot": "runtime/npm-global",
+    "gitRoot": "runtime/git",
+    "runtimeConfigRoot": "runtime/config",
+    "runtimeConfigFile": "runtime/config/opencode.jsonc",
+    "globalConfigRoot": "~/.config/opencode",
+    "globalConfigFile": "~/.config/opencode/opencode.json"
+  },
+  "downloads": {
+    "cacheRoot": "runtime/download-cache",
+    "manifestFile": "manifests/downloads/lingnan-admin-v1.jsonc",
+    "strategy": "official-first"
+  },
+  "desktop": {
+    "offlineInstaller": "runtime/download-cache/opencode-desktop-windows-x64.exe",
+    "artifactId": "opencode-desktop-win-x64",
+    "downloadPage": "https://opencode.ai/download"
+  },
+  "checks": {
+    "globalConfigPaths": [
+      "~/.config/opencode/opencode.json",
+      "~/.config/opencode/opencode.jsonc"
+    ],
+    "authPaths": [
+      "~/.local/share/opencode/auth.json"
+    ]
+  },
+  "networkTargets": [
+    {
+      "id": "dns-opencode",
+      "type": "dns",
+      "host": "opencode.ai",
+      "required": true,
+      "failureClass": "C",
+      "description": "OpenCode 域名解析"
+    },
+    {
+      "id": "https-opencode-docs",
+      "type": "https",
+      "url": "https://opencode.ai/docs/",
+      "required": true,
+      "failureClass": "C",
+      "description": "OpenCode 官方站点连通性"
+    },
+    {
+      "id": "https-npm-registry",
+      "type": "https",
+      "url": "https://registry.npmjs.org/opencode-ai",
+      "required": false,
+      "failureClass": "B",
+      "description": "NPM 官方安装源连通性"
+    },
+    {
+      "id": "https-npmmirror",
+      "type": "https",
+      "url": "https://registry.npmmirror.com/opencode-ai",
+      "required": false,
+      "failureClass": "B",
+      "description": "国内 npm 镜像连通性"
+    },
+    {
+      "id": "https-tuna-node",
+      "type": "https",
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/",
+      "required": false,
+      "failureClass": "B",
+      "description": "Node.js 国内镜像连通性"
+    }
+  ],
+  "deployment": {
+    "academyConfigFile": "assets/opencode/opencode.jsonc",
+    "academyConfigDir": "assets/opencode/.opencode",
+    "launcherFiles": [
+      "launcher/start.cmd",
+      "launcher/scan-only.cmd",
+      "launcher/open-opencode-web.cmd",
+      "launcher/configure-opencode.cmd",
+      "launcher/install-desktop.cmd"
+    ]
+  },
+  "dependencies": {
+    "git": {
+      "displayName": "Git",
+      "required": true,
+      "minVersion": "2.30.0",
+      "commandCandidates": [
+        "git"
+      ],
+      "runtimeCandidates": [
+        "runtime/git/cmd/git.exe",
+        "runtime/git/bin/git.exe"
+      ],
+      "versionArgs": [
+        "--version"
+      ],
+      "versionRegex": "(?<version>\\d+(?:\\.\\d+)+)",
+      "installers": [
+        {
+          "type": "download-expand",
+          "artifactId": "git-portable-win-x64",
+          "destination": "runtime/git",
+          "expectedFile": "git.exe"
+        }
+      ]
+    },
+    "node": {
+      "displayName": "Node.js",
+      "required": true,
+      "minVersion": "20.0.0",
+      "commandCandidates": [
+        "node"
+      ],
+      "runtimeCandidates": [
+        "runtime/node/node.exe"
+      ],
+      "versionArgs": [
+        "--version"
+      ],
+      "versionRegex": "(?<version>\\d+(?:\\.\\d+)+)",
+      "installers": [
+        {
+          "type": "download-expand",
+          "artifactId": "node-win-x64",
+          "destination": "runtime/node",
+          "expectedFile": "node.exe"
+        }
+      ]
+    },
+    "npm": {
+      "displayName": "npm",
+      "required": true,
+      "minVersion": "9.0.0",
+      "commandCandidates": [
+        "npm"
+      ],
+      "runtimeCandidates": [
+        "runtime/node/npm.cmd"
+      ],
+      "versionArgs": [
+        "--version"
+      ],
+      "versionRegex": "(?<version>\\d+(?:\\.\\d+)+)",
+      "repairDependencyId": "node"
+    },
+    "opencode": {
+      "displayName": "OpenCode",
+      "required": true,
+      "minVersion": "0.0.0",
+      "commandCandidates": [
+        "opencode"
+      ],
+      "runtimeCandidates": [
+        "runtime/npm-global/opencode.cmd"
+      ],
+      "versionArgs": [
+        "--version"
+      ],
+      "versionRegex": "(?<version>\\d+(?:\\.\\d+)+)",
+      "installers": [
+        {
+          "type": "download-npm-package",
+          "artifactId": "opencode-ai-tgz"
+        }
+      ]
+    }
+  }
+}
