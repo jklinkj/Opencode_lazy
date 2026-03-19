@@ -1,0 +1,122 @@
+{
+  "$schema": "../../core/schemas/download-manifest.schema.json",
+  "policyVersion": "lingnan-admin-v1",
+  "artifacts": {
+    "git-portable-win-x64": {
+      "displayName": "Git for Windows MinGit 64-bit",
+      "fileName": "git.zip",
+      "archiveType": "zip",
+      "sha256": "F42A561840627747AD48E6ECE05A14093292D31F3393A401A7F7C780EE7695C2",
+      "sources": [
+        {
+          "id": "official-github",
+          "kind": "official",
+          "url": "https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/MinGit-2.52.0-64-bit.zip",
+          "priority": 10,
+          "enabled": true
+        },
+        {
+          "id": "huaweicloud-mirror",
+          "kind": "mirror",
+          "url": "https://mirrors.huaweicloud.com/git-for-windows/v2.52.0.windows.1/MinGit-2.52.0-64-bit.zip",
+          "priority": 40,
+          "enabled": true
+        },
+        {
+          "id": "school-mirror",
+          "kind": "school",
+          "url": "https://mirror.example.invalid/opencode/git/MinGit-2.52.0-64-bit.zip",
+          "priority": 90,
+          "enabled": false
+        }
+      ]
+    },
+    "node-win-x64": {
+      "displayName": "Node.js 24.14.0 Windows x64 zip",
+      "fileName": "node.zip",
+      "archiveType": "zip",
+      "sha256": "313FA40C0D7B18575821DE8CB17483031FE07D95DE5994F6F435F3B345F85C66",
+      "sources": [
+        {
+          "id": "official-nodejs",
+          "kind": "official",
+          "url": "https://nodejs.org/dist/v24.14.0/node-v24.14.0-win-x64.zip",
+          "priority": 10,
+          "enabled": true
+        },
+        {
+          "id": "tuna-nodejs",
+          "kind": "mirror",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v24.14.0/node-v24.14.0-win-x64.zip",
+          "priority": 40,
+          "enabled": true
+        },
+        {
+          "id": "school-mirror",
+          "kind": "school",
+          "url": "https://mirror.example.invalid/opencode/node/node-v24.14.0-win-x64.zip",
+          "priority": 90,
+          "enabled": false
+        }
+      ]
+    },
+    "opencode-ai-tgz": {
+      "displayName": "OpenCode CLI npm tarball 1.2.27",
+      "fileName": "opencode-ai.tgz",
+      "archiveType": "tgz",
+      "sha256": "C9E7F98077F8074D3449571651EF2246F11359D6C52AC13C3F0EC897E88BE998",
+      "sources": [
+        {
+          "id": "official-npm-registry",
+          "kind": "official",
+          "url": "https://registry.npmjs.org/opencode-ai/-/opencode-ai-1.2.27.tgz",
+          "priority": 10,
+          "enabled": true
+        },
+        {
+          "id": "npmmirror",
+          "kind": "mirror",
+          "url": "https://registry.npmmirror.com/opencode-ai/-/opencode-ai-1.2.27.tgz",
+          "priority": 40,
+          "enabled": true
+        },
+        {
+          "id": "school-mirror",
+          "kind": "school",
+          "url": "https://mirror.example.invalid/opencode/npm/opencode-ai-1.2.27.tgz",
+          "priority": 90,
+          "enabled": false
+        }
+      ]
+    },
+    "opencode-desktop-win-x64": {
+      "displayName": "OpenCode Desktop Windows x64 1.2.27",
+      "fileName": "opencode-desktop-windows-x64.exe",
+      "archiveType": "exe",
+      "sha256": "CB2D63D57CD30CA29F142093FAFFC7575C1336C92E153260587DA2371F135250",
+      "sources": [
+        {
+          "id": "official-github",
+          "kind": "official",
+          "url": "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-desktop-windows-x64.exe",
+          "priority": 10,
+          "enabled": true
+        },
+        {
+          "id": "huaweicloud-mirror",
+          "kind": "mirror",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/anomalyco/opencode/v1.2.27/opencode-desktop-windows-x64.exe",
+          "priority": 40,
+          "enabled": true
+        },
+        {
+          "id": "school-mirror",
+          "kind": "school",
+          "url": "https://mirror.example.invalid/opencode/desktop/opencode-desktop-windows-x64.exe",
+          "priority": 90,
+          "enabled": false
+        }
+      ]
+    }
+  }
+}
