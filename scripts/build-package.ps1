@@ -21,6 +21,15 @@ if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
     $OutputRoot = Join-Path -Path $projectRoot -ChildPath 'dist'
 }
 
+$coreSource = Join-Path -Path $projectRoot -ChildPath 'core'
+if (-not (Test-Path -LiteralPath $coreSource -PathType Container)) {
+    $coreSource = Join-Path -Path $workspaceRoot -ChildPath 'core'
+}
+
+if (-not (Test-Path -LiteralPath $coreSource -PathType Container)) {
+    throw 'Standalone core directory was not found.'
+}
+
 Ensure-DirectoryPath -Path $OutputRoot
 
 $packageRoot = Join-Path -Path $OutputRoot -ChildPath $PackageName
@@ -36,7 +45,7 @@ $items = @('README.md', 'docs', 'launcher', 'scripts', 'profiles', 'assets', 'ma
 foreach ($item in $items) {
     Copy-Item -Path (Join-Path -Path $projectRoot -ChildPath $item) -Destination $packageRoot -Recurse -Force
 }
-Copy-Item -Path (Join-Path -Path $workspaceRoot -ChildPath 'core') -Destination (Join-Path -Path $packageRoot -ChildPath 'core') -Recurse -Force
+Copy-Item -Path $coreSource -Destination (Join-Path -Path $packageRoot -ChildPath 'core') -Recurse -Force
 
 Write-Host ('Package directory created: {0}' -f $packageRoot)
 

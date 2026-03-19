@@ -1,15 +1,16 @@
 # OpenCode Online Installer
 
-这个项目是在线下载和安装项目源码。GitHub 仓库只存放脚本、清单、配置模板和校验值，不分发第三方安装包本体。
+This repository contains the online download and installation scripts for the OpenCode deployment package.
+It only stores scripts, manifests, launchers, and configuration templates. Third-party installers and binary payloads are downloaded at install time and are not redistributed in this repository.
 
-## 下载策略
+## Download policy
 
-- 默认策略：官方源优先，国内镜像兜底。
-- 具体源顺序写在 `manifests/downloads/lingnan-admin-v1.jsonc`。
-- 学校或自建镜像默认留空位，按需启用。
-- 所有下载文件会落到 `runtime/download-cache/`，并执行 SHA-256 校验。
+- Default strategy: official sources first, mainland China mirrors as fallback.
+- Download order and checksum rules are defined in `manifests/downloads/lingnan-admin-v1.jsonc`.
+- School or self-hosted mirrors can be added as whitelist entries in the same manifest.
+- All downloaded files are stored in `runtime/download-cache/` and verified with SHA-256 before use.
 
-## 项目入口
+## Entrypoints
 
 - `launcher/start.cmd`
 - `launcher/scan-only.cmd`
@@ -17,7 +18,7 @@
 - `launcher/open-opencode-web.cmd`
 - `launcher/install-desktop.cmd`
 
-## 构建在线包
+## Build a release package
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-package.ps1 -CreateZip

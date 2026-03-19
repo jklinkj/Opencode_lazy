@@ -1,0 +1,7 @@
+dist/
+reports/
+runtime/
+.cache/
+*.log
+*.zip
+assets/opencode/.opencode/node_modules/
